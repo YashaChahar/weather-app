@@ -15,7 +15,7 @@ import WDay from './WDay'
         console.log(change);
       }
     useEffect(() => {
-          fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=c1fdcf428e7b6c4d8313bc4e67b7e031`)
+          fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=c1fdcf428e7b6c4d8313bc4e67b7e031`)
             .then(res => res.json())
             .then(
               (result) => {
