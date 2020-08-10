@@ -1,9 +1,9 @@
 import React,{useState,useEffect} from 'react';
-import {Card,Button} from 'react-bootstrap';
+import {Card} from 'react-bootstrap';
+import image from './cloudy.png'
 const WDay = ({info,city}) =>{
-  console.log("here",info)
+ 
 const [date,setDate] = useState('');
-
 const [temp,setTemp] = useState('');
 const [humidity,setHumidity] =useState('');
 const [windSpeed,setWindSpeed] = useState('');
@@ -13,30 +13,38 @@ useEffect(()=>{
   {
   setDate(info.dt_txt)
   setTemp(info.main.temp)
- 
-  var a = info.main;
-  var b = info.wind;
-  var c = info.weather;
+  setHumidity(info.main.humidity)
+  setWindSpeed(info.wind.speed)
+  if(info.weather[0])
+  {
+    setWeatherDescription(info.weather[0].description);
+    
   }
- 
-console.log(a)
-console.log(b)
-console.log(c)
-console.log(city)
+  
+  }
 
 
-},[info]
+
+
+},[info,city]
 
 )
 return(
-    <Card style={{ width: '10rem' }}>
-  <Card.Img variant="top" src="holder.js/100px180" />
+    <Card style={{ width: '14rem', background:"grey" }}>
+ 
   <Card.Body>
-    <Card.Title>{city}</Card.Title>
+    <Card.Title>{city ? city : "Bengaluru"}</Card.Title>
     <Card.Text>
      {date}
     </Card.Text>
-    <Button variant="primary">Gore somewhe</Button>
+    <Card.Img variant="top" src={image} />
+    <Card.Text style={{fontSize:"50px"}}>
+     {Math.floor(temp-273)+"ºC"}
+     </Card.Text>
+     <Card.Text >
+     {"Humidity: "+humidity}<br/>
+     {weatherDescription}
+    </Card.Text>
   </Card.Body>
 </Card>
 )
