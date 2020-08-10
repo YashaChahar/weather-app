@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import {Card} from 'react-bootstrap';
 import image from './cloudy.png'
+
+
 const WDay = ({info,city}) =>{
  
 const [date,setDate] = useState('');
@@ -30,10 +32,10 @@ useEffect(()=>{
 
 )
 return(
-    <Card style={{ width: '14rem', background:"grey" }}>
+    <Card  style={{ width: '14rem', background:"grey" }}>
  
   <Card.Body>
-    <Card.Title>{city ? city : "Bengaluru"}</Card.Title>
+    <Card.Title>{city}</Card.Title>
     <Card.Text>
      {date}
     </Card.Text>
@@ -41,7 +43,8 @@ return(
     <Card.Text style={{fontSize:"50px"}}>
      {Math.floor(temp-273)+"ºC"}
      </Card.Text>
-     <Card.Text >
+     
+     <Card.Text style={{fontSize:"20px"}} >
      {"Humidity: "+humidity}<br/>
      {weatherDescription}
     </Card.Text>

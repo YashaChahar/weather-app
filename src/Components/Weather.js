@@ -8,6 +8,7 @@ import WDay from './WDay'
       const [resultArray3,setResult3] = useState('');
       const [resultArray4,setResult4] = useState('');
       const [city,setCity] = useState('Bengaluru');
+      const [cityName,setCityName] = useState('');
       const [change,setChange] = useState(false);
       const getWeather =(e) =>{
         var c = !change;
@@ -25,7 +26,7 @@ import WDay from './WDay'
                 setResult2(result.list[17]);
                 setResult3(result.list[25]);
                 setResult4(result.list[33]);
-                setCity(result.city.name);
+                setCityName(result.city.name);
             
             },
             (error) => {
@@ -36,22 +37,27 @@ import WDay from './WDay'
     return(
       <>
       
-      <InputGroup className="mb-3 mt-2 "  >
+      <InputGroup className="mb-4 mt-2"  >
       <FormControl
         placeholder="Search..." type="text" onChange={
-          (e)=> { setCity(e.target.value) } } 
+          (e)=> { setCity(e.target.value) } } onKeyDown={(e)=>{
+            if(e.keyCode=='13')
+            {
+             getWeather();
+            }
+          }}
           
       />
       <Button onClick={getWeather}>Get Forecast</Button>
     </InputGroup>
  
-<Container>
+<Container className="mt-2">
   <Row>
-    <Col><WDay info ={resultArray0} city ={city} /></Col>
-    <Col><WDay  info ={resultArray1} city ={city}/></Col>
-    <Col><WDay info ={resultArray2} city ={city}/></Col>
-    <Col><WDay info ={resultArray3} city ={city} /></Col>
-    <Col><WDay info ={resultArray4} city ={city} /></Col>
+    <Col><WDay info ={resultArray0} city ={cityName} /></Col>
+    <Col><WDay  info ={resultArray1} city ={cityName}/></Col>
+    <Col><WDay info ={resultArray2} city ={cityName}/></Col>
+    <Col><WDay info ={resultArray3} city ={cityName} /></Col>
+    <Col><WDay info ={resultArray4} city ={cityName} /></Col>
   </Row>
 </Container>
 </>
